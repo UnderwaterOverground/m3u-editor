@@ -30,6 +30,8 @@ it('rejects credentials containing characters that break stream URLs', function 
     'space' => 'pass word',
     'tab' => "pass\tword",
     'newline' => "pass\nword",
+    'malformed utf-8 with a slash' => "bad\xffslash/here",
+    'malformed utf-8 alone' => "pass\xffword",
 ]);
 
 it('leaves empty values to the required/nullable rules', function () {

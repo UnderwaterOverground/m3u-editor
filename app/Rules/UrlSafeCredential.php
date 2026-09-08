@@ -13,15 +13,20 @@ class UrlSafeCredential implements ValidationRule
      * (`/live/{username}/{password}/{id}.{ext}`): a slash or backslash splits
      * the segment so the route never matches, `?` and `#` terminate the path,
      * `%` is decoded by the router, and whitespace is rejected or re-encoded
-     * by most players. Rejecting them at input time is the only place the
-     * problem is visible - the device just sees a 404 with no hint that the
-     * credential itself is at fault.
+     * by most players. Rejecting them at input time is the practical place to
+     * catch this: once such a credential is stored the stream route simply
+     * fails to match, so the device just sees a generic 404 with no hint that
+     * the credential itself is at fault.
      */
     private const PATTERN = '/[\s\/\\\\?#%]/u';
 
     public static function isSafe(string $value): bool
     {
-        return preg_match(self::PATTERN, $value) !== 1;
+        // preg_match() returns 1 on match, 0 on no match, and false on error
+        // (notably malformed UTF-8 under the `/u` modifier). Only an explicit
+        // 0 means the value is clean; treat a match or a scan error as unsafe
+        // so a credential with invalid bytes cannot fail open.
+        return preg_match(self::PATTERN, $value) === 0;
     }
 
     /**
