@@ -21,6 +21,7 @@ use App\Models\SourceCategory;
 use App\Models\SourceGroup;
 use App\Models\StreamProfile;
 use App\Rules\UrlIsAllowed;
+use App\Rules\UrlSafeCredential;
 use App\Services\DateFormatService;
 use App\Services\EpgCacheService;
 use App\Services\M3uProxyService;
@@ -671,6 +672,7 @@ class PlaylistAliasResource extends Resource implements CopilotResource
                                 'nullable',
                                 Rule::unique('playlist_aliases', 'username')->ignore($record?->id),
                                 Rule::unique('playlist_auths', 'username'),
+                                new UrlSafeCredential,
                             ];
                         })
                         ->columnSpan(1),
@@ -678,6 +680,7 @@ class PlaylistAliasResource extends Resource implements CopilotResource
                         ->label(__('Password'))
                         ->columnSpan(1)
                         ->password()
+                        ->rules(['nullable', new UrlSafeCredential])
                         ->revealable()
                         ->suffixAction(GeneratePasswordAction::make()),
                     Forms\Components\DateTimePicker::make('expires_at')

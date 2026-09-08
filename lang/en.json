@@ -5681,6 +5681,7 @@
     "Thai": "Thai",
     "That EPG channel could not be found.": "That EPG channel could not be found.",
     "That EPG channel is not part of this candidate review row.": "That EPG channel is not part of this candidate review row.",
+    "The :attribute cannot contain spaces or the characters / \\ ? # % because it is embedded in stream URLs.": "The :attribute cannot contain spaces or the characters / \\ ? # % because it is embedded in stream URLs.",
     "The \"From\" email address for outgoing emails. Defaults to no-reply@m3u-editor.dev.": "The \"From\" email address for outgoing emails. Defaults to no-reply@m3u-editor.dev.",
     "The \"tvg-shift\" attribute is used in your generated M3U playlist to shift the EPG (Electronic Program Guide) time for specific channels by a certain number of hours. This allows for adjusting the EPG data for individual channels rather than applying a global shift.": "The \"tvg-shift\" attribute is used in your generated M3U playlist to shift the EPG (Electronic Program Guide) time for specific channels by a certain number of hours. This allows for adjusting the EPG data for individual channels rather than applying a global shift.",
     "The AED profile has been assigned to the selected channels.": "The AED profile has been assigned to the selected channels.",
